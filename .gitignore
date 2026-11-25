@@ -1,0 +1,39 @@
+# Virtual Environments
+backend/.venv/
+.venv/
+env/
+venv/
+
+# Node dependencies & outputs
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+
+# Python cache & compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.pytest_cache/
+
+# Databases & local storage
+backend/data/*.db
+backend/data/*.sqlite3
+backend/data/snapshots/
+*.db
+*.sqlite3
+
+# Large local test datasets (keep repo lightweight)
+unclean_data_500k.csv
+
+# Environment & local settings
+.env
+.env.local
+*.log
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

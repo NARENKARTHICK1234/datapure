@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#F8FAFC] text-[#0F172A] dark:bg-slate-950 dark:text-slate-100;
+  }
+}
+
+.glass-panel {
+  @apply bg-white/80 backdrop-blur-md border border-slate-200/80 dark:bg-slate-900/75 dark:border-slate-800/80;
+}
+
+.saas-card {
+  @apply bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 rounded-xl shadow-card transition-all duration-200;
+}
+
+.saas-card-hover {
+  @apply saas-card hover:shadow-card-hover hover:border-indigo-200 dark:hover:border-indigo-900/70;
+}
+
+/* Custom sleek scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
