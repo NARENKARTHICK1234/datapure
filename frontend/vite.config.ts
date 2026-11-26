@@ -9,6 +9,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Dev server: proxy /api to local FastAPI backend
   server: {
     port: 5173,
     proxy: {
@@ -17,5 +18,10 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+  },
+  // Production build output directory (Render publish dir = frontend/dist)
+  build: {
+    outDir: "dist",
+    chunkSizeWarningLimit: 2048,
   },
 });

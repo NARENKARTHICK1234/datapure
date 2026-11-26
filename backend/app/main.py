@@ -68,9 +68,25 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+import os
+
+# ---------------------------------------------------------------------------
+# CORS — allow the Render-deployed frontend URL + localhost for local dev
+# Set ALLOWED_ORIGINS env var on Render to your frontend URL, e.g.:
+#   https://datapure.onrender.com
+# ---------------------------------------------------------------------------
+_raw_origins = os.getenv("ALLOWED_ORIGINS", "")
+_extra_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
+CORS_ORIGINS = [
+    "http://localhost:5173",
+    "http://localhost:4173",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:8000",
+] + _extra_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

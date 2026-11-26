@@ -1,38 +1,41 @@
-# Virtual Environments
+# ── Python ───────────────────────────────────────────────────────────────────
 backend/.venv/
 .venv/
 env/
 venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+*.egg-info/
 
-# Node dependencies & outputs
+# ── Node / Frontend ──────────────────────────────────────────────────────────
 frontend/node_modules/
 node_modules/
 frontend/dist/
 dist/
 
-# Python cache & compiled files
-__pycache__/
-*.py[cod]
-*$py.class
-*.pytest_cache/
-.pytest_cache/
-
-# Databases & local storage
+# ── Databases & ephemeral data (not persisted on Render free tier) ───────────
 backend/data/*.db
 backend/data/*.sqlite3
 backend/data/snapshots/
 *.db
 *.sqlite3
 
-# Large local test datasets (keep repo lightweight)
-unclean_data_500k.csv
-
-# Environment & local settings
+# ── Secrets & local env ──────────────────────────────────────────────────────
 .env
 .env.local
-*.log
+.env.production
 
-# IDE & OS files
+# ── Large generated files ────────────────────────────────────────────────────
+unclean_data_500k.csv
+unclean_data_500k_report.pdf
+
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+
+# ── IDE & OS ─────────────────────────────────────────────────────────────────
 .vscode/
 .idea/
 .DS_Store

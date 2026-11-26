@@ -1,9 +1,26 @@
-"""Application configuration and constants."""
+"""Application configuration and constants.
 
+On Render's free tier the filesystem is ephemeral — data written outside /tmp
+may be lost between deploys.  We store everything under DATA_DIR which falls
+back to /tmp/datapure when the standard ./data directory is not writable.
+"""
+
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BASE_DIR / "data"
+
+# On Render use /tmp for writable storage; fall back to local ./data in dev
+_data_candidate = BASE_DIR / "data"
+try:
+    _data_candidate.mkdir(parents=True, exist_ok=True)
+    # Quick write-access check
+    (_data_candidate / ".write_test").touch()
+    (_data_candidate / ".write_test").unlink()
+    DATA_DIR = _data_candidate
+except (OSError, PermissionError):
+    DATA_DIR = Path("/tmp/datapure")
+
 DATASETS_DIR = DATA_DIR / "datasets"
 DB_PATH = DATA_DIR / "datapure.db"
 

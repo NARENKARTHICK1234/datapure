@@ -1,6 +1,8 @@
 import type { CleaningOperation, DatasetMeta, ProfileResponse, ValidationRule, ValidationRunResponse } from "../types";
 
-const API_BASE = "/api";
+// In production (Render Static Site), VITE_API_URL points to the backend service.
+// In development (Vite dev server), leave it empty so the proxy handles /api/* calls.
+const API_BASE = (import.meta.env.VITE_API_URL ?? "") + "/api";
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, options);
